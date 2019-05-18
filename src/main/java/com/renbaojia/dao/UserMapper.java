@@ -1,6 +1,6 @@
 package com.renbaojia.dao;
 
-import com.renbaojia.entity.User;
+import com.renbaojia.pojo.User;
 
 import java.util.List;
 

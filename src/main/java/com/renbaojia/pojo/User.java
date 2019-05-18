@@ -1,4 +1,4 @@
-package com.renbaojia.entity;
+package com.renbaojia.pojo;
 
 public class User {
     private Integer id;

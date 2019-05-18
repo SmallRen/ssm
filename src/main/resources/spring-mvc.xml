@@ -18,6 +18,7 @@
     </mvc:annotation-driven>
 
     <!--静态资源访问-->
+    <mvc:resources mapping="/bootstrap/**" location="/bootstrap/"/>
     <mvc:resources mapping="/img/**" location="/img/"/>
     <!--json转换 -->
     <bean id="mappingJacksonHttpMessageConverter"

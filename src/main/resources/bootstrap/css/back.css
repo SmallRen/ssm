@@ -1,0 +1,39 @@
+blockquote,body,button,dd,div,dl,dt,form,h1,h2,h3,h4,h5,h6,input,li,ol,p,pre,td,textarea,th,ul {margin: 0;padding: 0;-webkit-tap-highlight-color: rgba(0,0,0,0)}
+        a:active,a:hover {outline: 0}
+        img {border: none}
+        li {list-style: none}
+        table {border-collapse: collapse;border-spacing: 0}
+        h4,h5,h6 {font-size: 100%}
+        button,input,optgroup,option,select,textarea {font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;outline: 0}
+        pre {white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-wor}
+        body {line-height: 24px;font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif}
+        hr {height: 1px;margin: 10px 0;border: 0;clear: both}
+        a {color: #333;text-decoration: none}
+        a:hover {color: #777}
+        .admin-header{height:40px ;background-color: #23262d;}
+        .admin-side{    position: fixed;left: 0;top:40px;bottom: 0;z-index: 999;width: 160px ;overflow-x: hidden;background-color: #393d49;}
+        .admin-content{position: absolute;left: 160px ;right: 0;top:40px ;bottom: 0;z-index: 998;width: auto;overflow: hidden;overflow-y: auto;box-sizing: border-box;}
+
+        .header-main{position: relative;color:#fff;padding: 0px 15px;}
+        .logo{margin-left:10px;line-height: 40px;color:#fff;font-size: 16px}
+        .header-nav{position: absolute;right: 0px;top: 0px;height: 40px;}
+        .header-nav li{display: inline-block;line-height: 40px;margin: 0 10px;position: relative;min-width: 100px;}
+        .header-nav li:hover::after{content: "";position: absolute;left: 0;bottom: 0;width:100%;height: 5px;background-color: #00b1aa;transition: all .2s; -webkit-transition: all .2s;}
+        .header-nav li dl{display: none;position: absolute;left: 0;top: 45px;min-width: 100%;line-height: 30px;padding: 5px 0;box-shadow: 0 2px 4px rgba(0,0,0,.12);border: 1px solid #d2d2d2;background-color: #fff;z-index: 100;border-radius: 2px;white-space: nowrap;font-size: 14px;z-index: 9999;}
+        .header-nav li:hover dl{display: block;}
+        .header-nav li dl a{color: #333}
+        .header-nav li a{display: block;padding: 0 20px;color: rgba(255,255,255,.7)}
+
+        .nav-three{width: 100%;}
+        .nav-three li a,.nav-three li span{display: block;padding: 0 20px;position: relative;height: 40px;line-height: 40px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;color: rgba(255,255,255,.7)}
+        .nav-three li span,.nav-three li .item-main{position: relative;}
+
+        .nav-three li span::after,.header-nav li a:after{content: '';position: absolute;top:50%;right:10px;width:0px;border-left: 7px solid transparent;border-right: 7px solid transparent;border-top: 7px solid #fff;transform: translateY(-50%);transition: all .1s; }
+        .nav-three li.nav-this span::after,.header-nav li a:hover:after{transform: rotate(180deg)}
+
+
+        .nav-three li dd{display: none}
+        .nav-three li.nav-this dd{display: block;background:  rgb(40, 43, 51)}
+        .nav-three li:hover .item-main::before{content: "";position: absolute;left: 0;bottom: 0;width:5px;height: 100%;background-color: #00b1aa;transition: all .2s; -webkit-transition: all .2s;}
+        .nav-three li:hover .item-main{background: #4E5465;}
+        .nav-three li:hover  a,.nav-three li:hover span{color: #fff}
