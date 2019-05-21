@@ -4,7 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- 自动扫描 -->
-    <context:component-scan base-package="com.renbaojia">
+    <context:component-scan base-package="com.workshop">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     <!--加载jdbc配置文件-->
@@ -42,7 +42,7 @@
     </bean>
     <!-- DAO接口所在包名，Spring会自动查找其下的类, 将mybatis接口的实现加入到ioc容器中-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.renbaojia.dao"/>
+        <property name="basePackage" value="com.workshop.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->

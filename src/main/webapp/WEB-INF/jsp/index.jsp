@@ -34,29 +34,37 @@
             <li >
                 <span class="item-main">用户管理</span>
                 <dl>
-                    <dd><a  href="${ctx}/BackUlistServlet" target="iframe">查询所有用户</a></dd>
+                    <dd><a  href="${ctx}/user/checkUser" target="iframe">查询所有用户</a></dd>
                     <dd><a href="javascript:;">增加用户</a></dd>
                     <dd><a href="javascript:;">删除用户</a></dd>
                     <dd><a href="javascript:;">修改用户信息</a></dd>
                 </dl>
             </li>
             <li>
-                <span class="item-main">商品管理</span>
+                <span class="item-main">设备管理</span>
                 <dl>
-                    <dd><a href="${ctx}/BackListServlet" target="iframe">查询所有商品</a></dd>
-                    <dd><a href="javascript:;">增加商品</a></dd>
-                    <dd><a href="javascript:;">删除商品</a></dd>
-                    <dd><a href="javascript:;">修改商品信息</a></dd>
+                    <dd><a href="${ctx}/equipment/checkEquipment" target="iframe">查询所有设备</a></dd>
+                    <dd><a href="javascript:;">增加设备</a></dd>
+                    <dd><a href="javascript:;">删除设备</a></dd>
+                    <dd><a href="javascript:;">修改设备信息</a></dd>
                 </dl>
             </li>
-
+            <li>
+                <span class="item-main">车间管理</span>
+                <dl>
+                    <dd><a href="${ctx}/workshop/checkWorkshop" target="iframe">查询所有车间</a></dd>
+                    <dd><a href="javascript:;">增加设备</a></dd>
+                    <dd><a href="javascript:;">删除设备</a></dd>
+                    <dd><a href="javascript:;">修改设备信息</a></dd>
+                </dl>
+            </li>
         </ul>
     </div>
     <div class="admin-content" >
         <!---主要内容 -->
-        <%--<iframe id="iframe" name="iframe" src="./check_good.jsp" height="100%" style="border:1px solid red;width:100%;padding:10px;">--%>
+        <iframe id="iframe" name="iframe" src="./check_equipment.jsp" height="100%" style="border:1px solid red;width:100%;padding:10px;">
 
-        <%--</iframe>--%>
+        </iframe>
     </div>
 </div>
 

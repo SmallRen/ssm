@@ -1,4 +1,4 @@
-package com.renbaojia.controller;
+package com.workshop.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,4 +11,7 @@ public class IndexController {
 
         return "index";
     }
+
+
+
 }
