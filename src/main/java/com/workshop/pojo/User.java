@@ -1,6 +1,7 @@
 package com.workshop.pojo;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 public class User {
     private Integer id;
@@ -13,7 +14,7 @@ public class User {
 
     private String telephone;
 
-    private Date hireDate;
+    private String hireDate;
 
     private int role;
 
@@ -80,11 +81,11 @@ public class User {
         this.telephone = telephone;
     }
 
-    public Date getHireDate() {
+    public String getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(Date hireDate) {
+    public void setHireDate(String hireDate) {
         this.hireDate = hireDate;
     }
 

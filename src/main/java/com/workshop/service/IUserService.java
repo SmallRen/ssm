@@ -11,7 +11,7 @@ public interface IUserService {
      */
     List<User> findAll();
 
-    boolean delete(String name);
+    boolean delete(Long id);
 
     boolean update(User user);
 

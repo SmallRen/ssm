@@ -20,6 +20,7 @@
     <!--静态资源访问-->
     <mvc:resources mapping="/bootstrap/**" location="classpath:bootstrap/"/>
     <mvc:resources mapping="/img/**" location="classpath:img/"/>
+    <mvc:resources mapping="/js/**" location="classpath:js/"/>
     <!--json转换 -->
     <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -45,4 +46,17 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.workshop.config.DateConvert" />
+            </list>
+        </property>
+    </bean>
+    <mvc:annotation-driven conversion-service="conversionService">
+    </mvc:annotation-driven>
+
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+    <mvc:resources mapping="/webjars/**"
+                   location="classpath:/META-INF/resources/webjars/" />
 </beans>

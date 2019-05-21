@@ -8,7 +8,7 @@ public interface IUserDao {
 
     List<User> findAll();
 
-    int delete(String name);
+    int delete(Long id);
 
     int updateByPrimaryKeySelective(User user);
 

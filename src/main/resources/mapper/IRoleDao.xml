@@ -6,4 +6,8 @@
         <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
     </resultMap>
 
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from role
+    </select>
 </mapper>

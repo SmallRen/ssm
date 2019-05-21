@@ -54,11 +54,11 @@
     <select id="findAll" resultMap="BaseResultMap">
     SELECT t.id,t.name,t.password,t.employee_number,t.telephone,c.role_name,t.hire_date,w.workshop_number,t.mac,t.workshop_id,t.role
     from user t
-    left join role c on c.role_id=t.id
+    left join role c on c.role_id=t.role
     left join workshop w on w.workshop_id=t.workshop_id
   </select>
     <delete id="delete" parameterType="map">
-    delete from user where name=#{name,jdbcType=VARCHAR}
+    delete from user where id=#{id,jdbcType=VARCHAR}
     </delete>
     <insert id="insert">
     insert into user(name,password,employee_number,telephone,hire_date,role,workshop_id,mac) values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},#{employeeNumber,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},#{hireDate,jdbcType=DATE},#{role,jdbcType=INTEGER},#{workshopId,jdbcType=INTEGER},#{mac,jdbcType=VARCHAR})

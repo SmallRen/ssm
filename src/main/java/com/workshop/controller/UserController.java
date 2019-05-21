@@ -1,7 +1,9 @@
 package com.workshop.controller;
 
 import com.workshop.pojo.User;
+import com.workshop.service.IRoleService;
 import com.workshop.service.IUserService;
+import com.workshop.service.IWorkshopService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +21,15 @@ public class UserController {
 
     @Autowired
     IUserService service;
+
+    @Autowired
+    IRoleService roleService;
+
+    @Autowired
+    IWorkshopService workshopService;
     /**
      * 查询所有用户
+     *
      * @param
      * @return
      */
@@ -34,6 +43,8 @@ public class UserController {
     @RequestMapping("/checkUser")
     public ModelAndView checkUser(ModelAndView modelAndView) {
         modelAndView.addObject("list", service.findAll());
+        modelAndView.addObject("roleList", roleService.findAll());
+        modelAndView.addObject("workList", workshopService.findAll());
         modelAndView.setViewName("check_user");
         return modelAndView;
     }
@@ -47,17 +58,19 @@ public class UserController {
 
     /**
      * 用户删除
-     * @param name
+     *
+     * @param id
      * @return
      */
     @ResponseBody
     @RequestMapping("/delete")
-    public boolean delete(String name) {
-        return service.delete(name);
+    public boolean delete(Long id) {
+        return service.delete(id);
     }
 
     /**
      * 修改用户
+     *
      * @param user
      * @return
      */
@@ -72,7 +85,6 @@ public class UserController {
     public boolean insert(User user) {
         return service.insert(user);
     }
-
 
 
 }
