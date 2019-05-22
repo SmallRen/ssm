@@ -13,4 +13,8 @@ public interface IEquipmentService {
 
     boolean delete(Integer equipmentId);
 
+    boolean insert(Equipment equipment);
+
+    boolean update(Equipment equipment);
+
 }

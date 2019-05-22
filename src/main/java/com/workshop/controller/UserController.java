@@ -7,6 +7,7 @@ import com.workshop.service.IWorkshopService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,13 +35,13 @@ public class UserController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/findAll")
+    @GetMapping("/findAll")
     public List<User> findAll() {
         List<User> all = service.findAll();
         return all;
     }
 
-    @RequestMapping("/checkUser")
+    @GetMapping("/checkUser")
     public ModelAndView checkUser(ModelAndView modelAndView) {
         modelAndView.addObject("list", service.findAll());
         modelAndView.addObject("roleList", roleService.findAll());
@@ -63,7 +64,7 @@ public class UserController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/delete")
+    @PostMapping("/delete")
     public boolean delete(Long id) {
         return service.delete(id);
     }
@@ -81,7 +82,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping("/insert")
+    @PostMapping("/insert")
     public boolean insert(User user) {
         return service.insert(user);
     }

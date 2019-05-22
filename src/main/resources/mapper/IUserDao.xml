@@ -40,7 +40,7 @@
             role=#{role,jdbcType=VARCHAR},
         </if>
         <if test="workshopId!=null and workshopId!=''">
-            workshop_id=#{workshopId,jdbcType=VARCHAR},
+            workshop_id=#{workshopId,jdbcType=INTEGER},
         </if>
         <if test="mac!=null and mac!=''">
             mac=#{mac,jdbcType=VARCHAR}
@@ -60,7 +60,7 @@
     <delete id="delete" parameterType="map">
     delete from user where id=#{id,jdbcType=VARCHAR}
     </delete>
-    <insert id="insert">
+    <insert id="insert" >
     insert into user(name,password,employee_number,telephone,hire_date,role,workshop_id,mac) values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},#{employeeNumber,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},#{hireDate,jdbcType=DATE},#{role,jdbcType=INTEGER},#{workshopId,jdbcType=INTEGER},#{mac,jdbcType=VARCHAR})
     </insert>
 </mapper>

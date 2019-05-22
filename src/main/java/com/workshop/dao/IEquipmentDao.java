@@ -9,5 +9,9 @@ public interface IEquipmentDao {
 
     int delete(Integer equipmentId);
 
+    int insert(Equipment equipment);
+
+    int updateByPrimaryKeySelective(Equipment equipment);
+
 
 }

@@ -9,12 +9,52 @@
         <result column="user_id" jdbcType="INTEGER" property="userId"/>
         <result column="order_date" jdbcType="DATE" property="orderDate"/>
         <result column="exfactory_date" jdbcType="DATE" property="exfactoryDate"/>
+        <association property="user" javaType="com.workshop.pojo.User">
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+        </association>
+        <association property="workshop" javaType="com.workshop.pojo.Workshop">
+            <result column="workshop_number" jdbcType="INTEGER" property="workshopNumber"/>
+        </association>
     </resultMap>
+    <insert id="insert" parameterType="map">
+insert into user(enqipment_number,workshop_id,model,user_id,order_date,exfactory_date) values
+(#{enqipmentNumber,jdbcType=VARCHAR}, #{workshopId,jdbcType=INTEGER},#{model,jdbcType=VARCHAR},#{userId,jdbcType=INTEGER},
+#{orderDate,jdbcType=DATE},#{exfactoryDate,jdbcType=DATE})
+
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.workshop.pojo.Equipment">
+        update workshop  set
+        <if test="enqipmentNumber!=null and enqipmentNumber!=''">
+            enqipment_number=#{enqipmentNumber,jdbcType=VARCHAR},
+        </if>
+        <if test="workshopId!=null and workshopId!=''">
+            workshop_id=#{workshopId,jdbcType=INTEGER},
+        </if>
+        <if test="model!=null and model!=''">
+            model=#{model,jdbcType=VARCHAR},
+        </if>
+        <if test="userId!=null and userId!=''">
+            user_id=#{userId,jdbcType=INTEGER},
+        </if>
+
+        <if test="orderDate!=null and orderDate!=''">
+            order_date=#{orderDate,jdbcType=VARCHAR},
+        </if>
+        <if test="exfactoryDate!=null and exfactoryDate!=''">
+            exfactory_date=#{exfactoryDate,jdbcType=VARCHAR},
+        </if>
+        where equipment_id =#{equipmentId,jdbcType=INTEGER}
+
+    </update>
+
     <delete id="delete" parameterType="map">
         delete from equipment where equipment_id=#{equipmentId,jdbcType=INTEGER}
     </delete>
     <select id="findAll" resultMap="BaseResultMap">
-    select * from equipment
+   	SELECT t.equipment_id,t.enqipment_number,c.workshop_number,t.model,w.name,t.order_date,t.exfactory_date,t.workshop_id,t.user_id
+		FROM equipment t
+		left join workshop c on c.workshop_id=t.workshop_id
+		left join `user` w on w.id=t.user_id
   </select>
 </mapper>
 

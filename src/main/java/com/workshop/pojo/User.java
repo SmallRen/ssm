@@ -23,6 +23,7 @@ public class User {
     private String mac;
 
     private Role myRole;
+
     private Workshop workshop;
 
     public Role getMyRole() {

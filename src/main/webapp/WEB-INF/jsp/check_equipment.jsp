@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="${ctx}/bootstrap/css/bootstrap.min.css">
 	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/back.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/js/laydate.css" media="all">
 	<script src="${ctx}/bootstrap/js/bootstrap.min.js" ></script>
 <title>查询所有商品</title>
 </head>
@@ -19,12 +20,12 @@
 </div>
 <button type="submit" class="btn btn-success btn-sm">查询</button>
 </form>
-<a class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addGood">增加</a>
+<a class="btn btn-success btn-sm"  data-toggle="modal" data-target="#add">增加</a>
 <table class="table table-bordered" style="margin-top:10px">
 	<tr>
 	 <th>设备ID</th>
 	 <th>设备编号</th>
-	 <th>生产车间</th>
+	 <th>所在车间</th>
 	 <th>机器型号</th>
 	 <th>负责人</th>
 	 <th>采购时间</th>
@@ -36,13 +37,13 @@
 	<tr>
 		<td>${equipment.equipmentId}</td>
 		<td>${equipment.enqipmentNumber}</td>
-		<td>${equipment.workshopId}</td>
+		<td>${equipment.workshop.workshopNumber}</td>
 		<td>${equipment.model}</td>
-		<td>${equipment.userId}</td>
-		<td>${equipment.exfactoryDate}</td>
+		<td>${equipment.user.name}</td>
+		<td>${equipment.orderDate}</td>
 		<td>${equipment.exfactoryDate}</td>
 		<td>
-		<%--<a class="btn btn-default btn-sm" onclick="goodDetails('${goods.id}','${goods.name}','${goods.description}','${goods.price}')"  >修改</a>--%>
+		<a class="btn btn-default btn-sm" onClick="eDetails('${equipment.equipmentId}','${equipment.enqipmentNumber}','${equipment.workshopId}','${equipment.model}','${equipment.userId}','${equipment.orderDate}','${equipment.exfactoryDate}')"  >修改</a>
 		<a class="btn btn-danger btn-sm" onClick="drop('${equipment.equipmentId}')">删除</a>
 		</td>
 	</tr>
@@ -72,9 +73,120 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="add" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">设备增加</h4>
+			</div>
+
+			<div class="modal-body">
+				<form id="addForm">
+					<div class="form-group">
+						<label for="enqipmentNumber">设备编号</label>
+						<input type="text" name="enqipmentNumber" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="workshopId">所在车间</label>
+						<select class="form-control" name="workshopId" >
+							<c:forEach items="${workList}" var="obj">
+								<option value="${obj.workshopId}">${obj.workshopNumber}</option>
+							</c:forEach>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="model">机器型号</label>
+						<input type="text" name="model" class="form-control" >
+					</div>
+
+					<div class="form-group">
+						<label for="userId">负责人</label>
+						<select class="form-control" name="userId">
+							<c:forEach items="${userlist}" var="obj">
+								<option value="${obj.id}">${obj.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="orderDate1">采购时间</label>
+						<input type="text" id="orderDate1" class="form-control"  name="orderDate1">
+					</div>
+					<div class="form-group">
+						<label for="exfactoryDate1">出厂时间</label>
+						<input type="text" id="exfactoryDate1" class="form-control"  name="exfactoryDate1">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				<button type="button" class="btn btn-primary" id="addSubmitBtn">提交</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%--设备修改--%>
+<div class="modal fade" id="eDetails" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">设备修改</h4>
+			</div>
+
+			<div class="modal-body">
+				<form id="udpateForm">
+					<div class="form-group">
+						<label for="enqipmentNumber">设备编号</label>
+						<input type="text" name="enqipmentNumber" class="form-control" id="enqipmentNumber">
+					</div>
+					<div class="form-group">
+						<label for="workshopId">所在车间</label>
+						<select class="form-control" name="workshopId" id="workshopId">
+						<c:forEach items="${workList}" var="obj">
+							<option value="${obj.workshopId}">${obj.workshopNumber}</option>
+						</c:forEach>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="model">机器型号</label>
+						<input type="text" name="model" class="form-control" id="model">
+					</div>
+
+					<div class="form-group">
+						<label for="userId">负责人</label>
+						<select class="form-control" name="userId" id="userId">
+						<c:forEach items="${userlist}" var="obj">
+							<option value="${obj.id}">${obj.name}</option>
+						</c:forEach>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="orderDate">采购时间</label>
+						<input type="text" id="orderDate" class="form-control"  name="orderDate">
+					</div>
+					<div class="form-group">
+						<label for="exfactoryDate">出厂时间</label>
+						<input type="text" id="exfactoryDate" class="form-control"  name="exfactoryDate">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				<button type="button" class="btn btn-primary" id="submitBtn">提交</button>
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 <script>
-	//删除商品
+	//删除设备
 	function drop(equipmentId){
 		$("#deleteId").val(equipmentId);
 		$("#drop").modal('toggle');
@@ -100,6 +212,75 @@
 		});
 	});
 
+	//修改
+	function eDetails(equipmentId, enqipmentNumber, workshopId, model, userId, orderDate, exfactoryDate) {
+		$("#equipmentId").val(equipmentId);
+		$("#enqipmentNumber").val(enqipmentNumber);
+		$("#workshopId").val(workshopId);
+		$("#model").val(model);
+		$("#userId").val(userId);
+		$("#orderDate").val(orderDate);
+		$("#exfactoryDate").val(exfactoryDate);
+		$("#eDetails").modal('toggle');
+	}
+
+	$("#submitBtn").click(function () {
+		$.ajax({
+			url: '${ctx}/equipment/update',
+			//序列化表单
+			data: $("#udpateForm").serialize(),
+			type: 'POST',
+			dataType: 'text',
+			success: function (data) {
+				console.log(data)
+				if (data == 'true') {
+					$("#eDetails").modal('toggle');
+					location.reload();
+				} else {
+					alert('修改失败')
+				}
+			}
+
+		});
+	});
+
+	//增加
+	$("#addSubmitBtn").click(function () {
+		$.ajax({
+			url: '${ctx}/equipment/insert',
+			//序列化表单
+			data: $("#addForm").serialize(),
+			type: 'post',
+			dataType: 'text',
+			success: function (data) {
+				console.log(data)
+				if (data == 'true') {
+					$("#add").modal('toggle');
+					location.reload();
+				} else {
+					alert('增加失败')
+				}
+			}
+
+		});
+	});
+
+
+	//执行一个laydate实例
+	laydate.render({
+		elem: '#orderDate' //指定元素exfactoryDate
+	});
+	//执行一个laydate实例
+	laydate.render({
+		elem: '#exfactoryDate' //指定元素exfactoryDate
+	});
+	laydate.render({
+		elem: '#orderDate1' //指定元素exfactoryDate
+	});
+	//执行一个laydate实例
+	laydate.render({
+		elem: '#exfactoryDate1' //指定元素exfactoryDate
+	});
 </script>
 </html>
 

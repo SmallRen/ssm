@@ -14,9 +14,14 @@ public class Equipment {
 
     private int userId;
 
-    private Date orderDate;
+    private String  orderDate;
 
-    private Date exfactoryDate;
+    private String exfactoryDate;
+
+    private User user;
+
+    private Workshop workshop;
+
 
     public int getEquipmentId() {
         return equipmentId;
@@ -58,19 +63,35 @@ public class Equipment {
         this.userId = userId;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
-    public Date getExfactoryDate() {
+    public String getExfactoryDate() {
         return exfactoryDate;
     }
 
-    public void setExfactoryDate(Date exfactoryDate) {
+    public void setExfactoryDate(String exfactoryDate) {
         this.exfactoryDate = exfactoryDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Workshop getWorkshop() {
+        return workshop;
+    }
+
+    public void setWorkshop(Workshop workshop) {
+        this.workshop = workshop;
     }
 }

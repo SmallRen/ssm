@@ -27,6 +27,18 @@ public class EquipmentServiceImpl implements IEquipmentService {
 
     }
 
+    @Override
+    public boolean insert(Equipment equipment) {
+        int i=equipmentDao.insert(equipment);
+        return i == 1 ? true : false;
+    }
+
+
+    @Override
+    public boolean update(Equipment equipment) {
+        int i=equipmentDao.updateByPrimaryKeySelective(equipment);
+        return i == 1 ? true : false;
+    }
 
 }
 
