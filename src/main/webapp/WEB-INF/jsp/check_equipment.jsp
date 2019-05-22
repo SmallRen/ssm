@@ -113,11 +113,11 @@
 					</div>
 					<div class="form-group">
 						<label for="orderDate1">采购时间</label>
-						<input type="text" id="orderDate1" class="form-control"  name="orderDate1">
+						<input type="text" id="orderDate1" class="form-control"  name="orderDate">
 					</div>
 					<div class="form-group">
 						<label for="exfactoryDate1">出厂时间</label>
-						<input type="text" id="exfactoryDate1" class="form-control"  name="exfactoryDate1">
+						<input type="text" id="exfactoryDate1" class="form-control"  name="exfactoryDate">
 					</div>
 				</form>
 			</div>
@@ -141,6 +141,7 @@
 
 			<div class="modal-body">
 				<form id="udpateForm">
+					<input type="hidden"  id="equipmentId" name="equipmentId">
 					<div class="form-group">
 						<label for="enqipmentNumber">设备编号</label>
 						<input type="text" name="enqipmentNumber" class="form-control" id="enqipmentNumber">
@@ -185,6 +186,7 @@
 	</div>
 </div>
 </body>
+<script src="${ctx}/js/laydate.js"></script>
 <script>
 	//删除设备
 	function drop(equipmentId){

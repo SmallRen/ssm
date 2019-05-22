@@ -17,13 +17,13 @@
         </association>
     </resultMap>
     <insert id="insert" parameterType="map">
-insert into user(enqipment_number,workshop_id,model,user_id,order_date,exfactory_date) values
+insert into equipment (enqipment_number,workshop_id,model,user_id,order_date,exfactory_date) values
 (#{enqipmentNumber,jdbcType=VARCHAR}, #{workshopId,jdbcType=INTEGER},#{model,jdbcType=VARCHAR},#{userId,jdbcType=INTEGER},
 #{orderDate,jdbcType=DATE},#{exfactoryDate,jdbcType=DATE})
 
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.workshop.pojo.Equipment">
-        update workshop  set
+        update equipment set
         <if test="enqipmentNumber!=null and enqipmentNumber!=''">
             enqipment_number=#{enqipmentNumber,jdbcType=VARCHAR},
         </if>
@@ -41,7 +41,7 @@ insert into user(enqipment_number,workshop_id,model,user_id,order_date,exfactory
             order_date=#{orderDate,jdbcType=VARCHAR},
         </if>
         <if test="exfactoryDate!=null and exfactoryDate!=''">
-            exfactory_date=#{exfactoryDate,jdbcType=VARCHAR},
+            exfactory_date=#{exfactoryDate,jdbcType=VARCHAR}
         </if>
         where equipment_id =#{equipmentId,jdbcType=INTEGER}
 
