@@ -17,4 +17,7 @@ public interface IUserService {
 
     boolean insert(User user);
 
+    boolean update(Integer id, String password);
+
+    boolean updatetel(Integer id, String telephone);
 }

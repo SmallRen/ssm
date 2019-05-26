@@ -1,10 +1,15 @@
 package com.workshop.controller;
 
+import com.workshop.common.ResponseCode;
+import com.workshop.common.ResponseResult;
 import com.workshop.pojo.User;
 import com.workshop.service.IRoleService;
 import com.workshop.service.IUserService;
 import com.workshop.service.IWorkshopService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -87,5 +92,37 @@ public class UserController {
         return service.insert(user);
     }
 
+
+      /**
+     * 修改用户密码
+     * @param
+     * @return
+     */
+    @ApiOperation(value = "修改用户密码", notes = "修改用户密码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户名", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "用户密码", required = true, paramType = "query", dataType = "String"),
+    })
+
+    @PostMapping("/updatePassword")
+    @ResponseBody
+    public ResponseResult<Boolean> updatePassword(Integer id,String password){
+
+        return ResponseResult.e(ResponseCode.OK, service.update(id,password));
+    }
+
+
+    @ApiOperation(value = "修改用户密码", notes = "修改用户电话")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户名", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "telephone", value = "用户电话", required = true, paramType = "query", dataType = "String"),
+    })
+
+    @PostMapping("/updateTelephone")
+    @ResponseBody
+    public ResponseResult<Boolean> updateTelephone(Integer id,String telephone){
+
+        return ResponseResult.e(ResponseCode.OK, service.updatetel(id,telephone));
+    }
 
 }

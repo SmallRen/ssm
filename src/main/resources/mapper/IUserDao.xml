@@ -51,6 +51,12 @@
       where id =#{id,jdbcType=INTEGER}
 
     </update>
+    <update id="update" parameterType="map">
+   update  user  set password=#{password,jdbcType=VARCHAR} where id =#{id,jdbcType=INTEGER}
+    </update>
+    <update id="updatetel" parameterType="map">
+   update  user  set telephone=#{telephone,jdbcType=VARCHAR} where id =#{id,jdbcType=INTEGER}
+    </update>
     <select id="findAll" resultMap="BaseResultMap">
     SELECT t.id,t.name,t.password,t.employee_number,t.telephone,c.role_name,t.hire_date,w.workshop_number,t.mac,t.workshop_id,t.role
     from user t
