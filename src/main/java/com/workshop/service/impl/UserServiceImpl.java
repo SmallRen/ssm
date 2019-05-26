@@ -5,6 +5,7 @@ import com.workshop.pojo.User;
 import com.workshop.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -59,19 +60,28 @@ public class UserServiceImpl implements IUserService {
                 user.setPassword(password);
                 user.setMac(mac);
                 userDao.updateByPrimaryKeySelective(user);
-                return null;
+                return user;
             } else {
-                if (user.getPassword().equals(password)) {
-                    if (user.getMac() != null && user.getMac().equals(mac)) {
-                        return user;
+                if(!StringUtils.isEmpty(user.getPassword())){
+                    if (user.getPassword().equals(password)) {
+                        if (user.getMac() != null && user.getMac().equals(mac)) {
+                            return user;
+                        } else {
+                            user.setMac(mac);
+                            userDao.updateByPrimaryKeySelective(user);
+                            return user;
+                        }
                     } else {
-                        user.setMac(mac);
-                        userDao.updateByPrimaryKeySelective(user);
-                        return user;
+                        return null;
                     }
-                } else {
-                    return null;
                 }
+                else{
+                    user.setPassword(password);
+                    user.setMac(mac);
+                    userDao.updateByPrimaryKeySelective(user);
+                    return user;
+                }
+
             }
         }
         return null;

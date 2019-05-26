@@ -1,6 +1,8 @@
 package com.workshop.dao;
 
 import com.workshop.pojo.Equipment;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface IEquipmentDao {
@@ -15,5 +17,5 @@ public interface IEquipmentDao {
     List<Equipment> findByAdmin();
 
 
-    List<Equipment> findByWorkshopId(Long workshopId, Long role,Long userId);
+    List<Equipment> findByWorkshopId(@Param("workshopId")Long workshopId, @Param("role") Long role, @Param("userId")Long userId);
 }
