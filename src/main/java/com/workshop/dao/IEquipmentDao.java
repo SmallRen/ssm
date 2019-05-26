@@ -12,6 +12,8 @@ public interface IEquipmentDao {
     int insert(Equipment equipment);
 
     int updateByPrimaryKeySelective(Equipment equipment);
+    List<Equipment> findByAdmin();
 
 
+    List<Equipment> findByWorkshopId(Long workshopId, Long role,Long userId);
 }

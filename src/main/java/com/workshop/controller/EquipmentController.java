@@ -8,10 +8,7 @@ import com.workshop.service.IWorkshopService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -28,8 +25,10 @@ public class EquipmentController {
 
     @Autowired
     IUserService userService;
+
     /**
      * 查询所有用户
+     *
      * @param
      * @return
      */
@@ -38,6 +37,22 @@ public class EquipmentController {
     public List<Equipment> findAll() {
         return service.findAll();
     }
+
+
+    /**
+     * 查询所有设备
+     *
+     * @param
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/findByWorkshopId")
+    public List<Equipment> findByWorkshopId(Long workshopId,Long role,Long userId) {
+        return service.findByWorkshopId(workshopId,role,userId);
+    }
+
+
+
 
     @GetMapping("/checkEquipment")
     public ModelAndView checkUser(ModelAndView modelAndView) {
@@ -59,6 +74,7 @@ public class EquipmentController {
 
     /**
      * 设备删除
+     *
      * @param equipmentId
      * @return
      */
@@ -71,13 +87,14 @@ public class EquipmentController {
 
     /**
      * 增加设备
+     *
      * @param equipment
      * @return
      */
-   @ResponseBody
-   @PostMapping("/insert")
+    @ResponseBody
+    @PostMapping("/insert")
     public boolean insert(Equipment equipment) {
-       return  service.insert(equipment);
+        return service.insert(equipment);
     }
 
     @ResponseBody
@@ -85,4 +102,6 @@ public class EquipmentController {
     public boolean update(Equipment equipment) {
         return service.update(equipment);
     }
+
+
 }

@@ -40,5 +40,11 @@ public class EquipmentServiceImpl implements IEquipmentService {
         return i == 1 ? true : false;
     }
 
+    @Override
+    public List<Equipment> findByWorkshopId(Long workshopId, Long role,Long userId) {
+        return equipmentDao.findByWorkshopId(workshopId,role,userId);
+    }
+
+
 }
 

@@ -19,4 +19,6 @@ public interface IUserDao {
 
     int updatetel(@Param("id") Integer id, @Param("telephone") String telephone);
 
+    User checkTelephone(String telephone);
+
 }

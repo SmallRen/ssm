@@ -23,33 +23,58 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean delete(Long id) {
-        int i=userDao.delete(id);
+        int i = userDao.delete(id);
         return i == 1 ? true : false;
     }
 
     @Override
     public boolean update(User user) {
-        int i=userDao.updateByPrimaryKeySelective(user);
+        int i = userDao.updateByPrimaryKeySelective(user);
         return i == 1 ? true : false;
     }
 
     @Override
     public boolean insert(User user) {
-        int i=userDao.insert(user);
+        int i = userDao.insert(user);
         return i == 1 ? true : false;
     }
 
     @Override
     public boolean update(Integer id, String password) {
-        int i = userDao.update(id,password);
-        return i==1?true:false;
+        int i = userDao.update(id, password);
+        return i == 1 ? true : false;
     }
 
     @Override
     public boolean updatetel(Integer id, String telephone) {
-        int i=userDao.updatetel(id,telephone);
-        return i==1?true:false;
+        int i = userDao.updatetel(id, telephone);
+        return i == 1 ? true : false;
     }
 
-
+    @Override
+    public User login(String telephone, String password, String mac) {
+        User user = userDao.checkTelephone(telephone);
+        if (user != null) {
+            if (user.getPassword() == null) {
+                user.setPassword(password);
+                user.setMac(mac);
+                userDao.updateByPrimaryKeySelective(user);
+                return null;
+            } else {
+                if (user.getPassword().equals(password)) {
+                    if (user.getMac() != null && user.getMac().equals(mac)) {
+                        return user;
+                    } else {
+                        user.setMac(mac);
+                        userDao.updateByPrimaryKeySelective(user);
+                        return user;
+                    }
+                } else {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+    
 }

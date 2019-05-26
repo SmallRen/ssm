@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workshop.dao.IDataDao">
+    <resultMap id="BaseResultMap" type="com.workshop.pojo.Data">
+
+        <id column="data_id" jdbcType="INTEGER" property="dataId"/>
+        <result column="equipment_id" jdbcType="INTEGER" property="day"/>
+        <result column="day" jdbcType="DATE" property="temperature"/>
+        <result column="humidity" jdbcType="VARCHAR" property="humidity"/>
+        <result column="pm" jdbcType="VARCHAR" property="pm"/>
+    </resultMap>
+    <select id="find" parameterType="map" resultMap="BaseResultMap">
+     select * from `data` where `day` between #{start,jdbcType=DATE} and #{end,jdbcType=DATE}
+ </select>
+</mapper>

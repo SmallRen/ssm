@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workshop.dao.IStateDao">
+    <resultMap id="BaseResultMap" type="com.workshop.pojo.State">
+
+        <id column="state_id" jdbcType="INTEGER" property="stateId"/>
+        <result column="equipment_id" jdbcType="INTEGER" property="equipmentId"/>
+        <result column="run" jdbcType="VARCHAR" property="run"/>
+        <result column="fault" jdbcType="VARCHAR" property="fault"/>
+        <result column="standby" jdbcType="VARCHAR" property="standby"/>
+        <result column="offline" jdbcType="VARCHAR" property="offline"/>
+    </resultMap>
+ <select id="findOne" parameterType="map" resultMap="BaseResultMap">
+     select * from state where equipment_id=#{equipmentId,jdbcType=INTEGER}
+ </select>
+</mapper>

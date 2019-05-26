@@ -33,6 +33,7 @@ public class UserController {
 
     @Autowired
     IWorkshopService workshopService;
+
     /**
      * 查询所有用户
      *
@@ -93,8 +94,9 @@ public class UserController {
     }
 
 
-      /**
+    /**
      * 修改用户密码
+     *
      * @param
      * @return
      */
@@ -106,9 +108,9 @@ public class UserController {
 
     @PostMapping("/updatePassword")
     @ResponseBody
-    public ResponseResult<Boolean> updatePassword(Integer id,String password){
+    public ResponseResult<Boolean> updatePassword(Integer id, String password) {
 
-        return ResponseResult.e(ResponseCode.OK, service.update(id,password));
+        return ResponseResult.e(ResponseCode.OK, service.update(id, password));
     }
 
 
@@ -120,9 +122,25 @@ public class UserController {
 
     @PostMapping("/updateTelephone")
     @ResponseBody
-    public ResponseResult<Boolean> updateTelephone(Integer id,String telephone){
+    public ResponseResult<Boolean> updateTelephone(Integer id, String telephone) {
 
-        return ResponseResult.e(ResponseCode.OK, service.updatetel(id,telephone));
+        return ResponseResult.e(ResponseCode.OK, service.updatetel(id, telephone));
+    }
+
+    @ApiOperation(value = "登录", notes = "登录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "telephone", value = "用户名", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "mac", value = "MAC地址", required = true, paramType = "query", dataType = "String"),
+    })
+    @ResponseBody
+    @PostMapping("/login")
+    public ResponseResult login(String telephone, String password, String mac) {
+        User user = service.login(telephone, password, mac);
+        if (user == null) {
+            return ResponseResult.e(ResponseCode.FAIL, "登录失败！");
+        }
+        return ResponseResult.e(ResponseCode.OK, user);
     }
 
 }

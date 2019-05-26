@@ -20,4 +20,6 @@ public interface IUserService {
     boolean update(Integer id, String password);
 
     boolean updatetel(Integer id, String telephone);
+
+    User login(String telephone, String password, String mac);
 }

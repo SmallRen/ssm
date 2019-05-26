@@ -20,35 +20,36 @@
     </resultMap>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.workshop.pojo.User">
-      update user  set
-      <if test="password!=null and password!=''">
-        password=#{password,jdbcType=VARCHAR},
-      </if>
-        <if test="name!=null and name!=''">
-            name=#{name,jdbcType=VARCHAR},
-        </if>
-        <if test="employeeNumber!=null and employeeNumber!=''">
-            employee_number=#{employeeNumber,jdbcType=VARCHAR},
-        </if>
-        <if test="telephone!=null and telephone!=''">
-            telephone=#{telephone,jdbcType=VARCHAR},
-        </if>
-        <if test="hireDate!=null and hireDate!=''">
-            hire_date=#{hireDate,jdbcType=VARCHAR},
-        </if>
-        <if test="role!=null and role!=''">
-            role=#{role,jdbcType=VARCHAR},
-        </if>
-        <if test="workshopId!=null and workshopId!=''">
-            workshop_id=#{workshopId,jdbcType=INTEGER},
-        </if>
-        <if test="mac!=null and mac!=''">
-            mac=#{mac,jdbcType=VARCHAR}
-        </if>
+        update user
+        <set>
+            <if test="password!=null and password!=''">
+                password=#{password,jdbcType=VARCHAR},
+            </if>
+            <if test="name!=null and name!=''">
+                name=#{name,jdbcType=VARCHAR},
+            </if>
+            <if test="employeeNumber!=null and employeeNumber!=''">
+                employee_number=#{employeeNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone!=null and telephone!=''">
+                telephone=#{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="hireDate!=null and hireDate!=''">
+                hire_date=#{hireDate,jdbcType=VARCHAR},
+            </if>
+            <if test="role!=null and role!=''">
+                role=#{role,jdbcType=VARCHAR},
+            </if>
+            <if test="workshopId!=null and workshopId!=''">
+                workshop_id=#{workshopId,jdbcType=INTEGER},
+            </if>
+            <if test="mac!=null and mac!=''">
+                mac=#{mac,jdbcType=VARCHAR},
+            </if>
+        </set>
 
 
-
-      where id =#{id,jdbcType=INTEGER}
+        where id =#{id,jdbcType=INTEGER}
 
     </update>
     <update id="update" parameterType="map">
@@ -66,7 +67,11 @@
     <delete id="delete" parameterType="map">
     delete from user where id=#{id,jdbcType=VARCHAR}
     </delete>
-    <insert id="insert" >
+    <insert id="insert">
     insert into user(name,password,employee_number,telephone,hire_date,role,workshop_id,mac) values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},#{employeeNumber,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},#{hireDate,jdbcType=DATE},#{role,jdbcType=INTEGER},#{workshopId,jdbcType=INTEGER},#{mac,jdbcType=VARCHAR})
     </insert>
+
+    <select id="checkTelephone" parameterType="map" resultMap="BaseResultMap">
+        select *  from  user where telephone=#{telephone,jdbcType=VARCHAR}
+    </select>
 </mapper>

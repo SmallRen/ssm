@@ -51,11 +51,25 @@ insert into equipment (enqipment_number,workshop_id,model,user_id,order_date,exf
         delete from equipment where equipment_id=#{equipmentId,jdbcType=INTEGER}
     </delete>
     <select id="findAll" resultMap="BaseResultMap">
-   	SELECT t.equipment_id,t.enqipment_number,c.workshop_number,t.model,w.name,t.order_date,t.exfactory_date,t.workshop_id,t.user_id
-		FROM equipment t
-		left join workshop c on c.workshop_id=t.workshop_id
-		left join `user` w on w.id=t.user_id
-  </select>
+        SELECT
+        t.equipment_id,t.enqipment_number,c.workshop_number,t.model,w.name,t.order_date,t.exfactory_date,t.workshop_id,t.user_id
+        FROM equipment t
+        left join workshop c on c.workshop_id=t.workshop_id
+        left join `user` w on w.id=t.user_id
+    </select>
+    <select id="findByWorkshopId" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        t.equipment_id,t.enqipment_number,c.workshop_number,t.model,w.name,t.order_date,t.exfactory_date,t.workshop_id,t.user_id
+        FROM equipment t
+        left join workshop c on c.workshop_id=t.workshop_id
+        left join `user` w on w.id=t.user_id
+        where 1=1
+        <if test="role==1">
+           and  w.id=#{userId,jdbcType=INTEGER}
+        </if>
+        and t.equipment_id=#{equipmentId,jdbcType=INTEGER}
+    </select>
+
 </mapper>
 
 

@@ -17,4 +17,11 @@ public interface IEquipmentService {
 
     boolean update(Equipment equipment);
 
+    /**
+     * 根据role 车间id 查询设备
+     * @param workshopId
+     * @param role
+     * @return
+     */
+    List<Equipment> findByWorkshopId(Long workshopId, Long role,Long userId);
 }
